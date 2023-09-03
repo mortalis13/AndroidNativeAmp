@@ -10,7 +10,7 @@ static LiveEffectEngine *engine = nullptr;
 extern "C" {
 
 JNIEXPORT jboolean JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_create(JNIEnv *env, jclass) {
+Java_org_home_amp_Engine_create(JNIEnv *env, jclass) {
     if (engine == nullptr) {
         engine = new LiveEffectEngine();
     }
@@ -19,7 +19,7 @@ Java_org_home_oboeamp_LiveEffectEngine_create(JNIEnv *env, jclass) {
 }
 
 JNIEXPORT void JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_delete(JNIEnv *env, jclass) {
+Java_org_home_amp_Engine_delete(JNIEnv *env, jclass) {
     if (engine) {
         engine->setEffectOn(false);
         delete engine;
@@ -28,7 +28,7 @@ Java_org_home_oboeamp_LiveEffectEngine_delete(JNIEnv *env, jclass) {
 }
 
 JNIEXPORT jboolean JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_setEffectOn(JNIEnv *env, jclass, jboolean isEffectOn) {
+Java_org_home_amp_Engine_setEffectOn(JNIEnv *env, jclass, jboolean isEffectOn) {
     if (engine == nullptr) {
         LOGE(
             "Engine is null, you must call createEngine before calling this "
@@ -40,7 +40,7 @@ Java_org_home_oboeamp_LiveEffectEngine_setEffectOn(JNIEnv *env, jclass, jboolean
 }
 
 JNIEXPORT void JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_setRecordingDeviceId(JNIEnv *env, jclass, jint deviceId) {
+Java_org_home_amp_Engine_setRecordingDeviceId(JNIEnv *env, jclass, jint deviceId) {
     if (engine == nullptr) {
         LOGE("Engine is null, you must call createEngine before calling this method");
         return;
@@ -50,7 +50,7 @@ Java_org_home_oboeamp_LiveEffectEngine_setRecordingDeviceId(JNIEnv *env, jclass,
 }
 
 JNIEXPORT void JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_setPlaybackDeviceId(
+Java_org_home_amp_Engine_setPlaybackDeviceId(
     JNIEnv *env, jclass, jint deviceId) {
     if (engine == nullptr) {
         LOGE("Engine is null, you must call createEngine before calling this method");
@@ -61,7 +61,7 @@ Java_org_home_oboeamp_LiveEffectEngine_setPlaybackDeviceId(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_setAPI(JNIEnv *env, jclass type, jint apiType) {
+Java_org_home_amp_Engine_setAPI(JNIEnv *env, jclass type, jint apiType) {
     if (engine == nullptr) {
         LOGE("Engine is null, you must call createEngine before calling this method");
         return JNI_FALSE;
@@ -84,7 +84,7 @@ Java_org_home_oboeamp_LiveEffectEngine_setAPI(JNIEnv *env, jclass type, jint api
 }
 
 JNIEXPORT jboolean JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_isAAudioRecommended(JNIEnv *env, jclass type) {
+Java_org_home_amp_Engine_isAAudioRecommended(JNIEnv *env, jclass type) {
     if (engine == nullptr) {
         LOGE("Engine is null, you must call createEngine before calling this method");
         return JNI_FALSE;
@@ -93,7 +93,7 @@ Java_org_home_oboeamp_LiveEffectEngine_isAAudioRecommended(JNIEnv *env, jclass t
 }
 
 JNIEXPORT void JNICALL
-Java_org_home_oboeamp_LiveEffectEngine_native_1setDefaultStreamValues(JNIEnv *env, jclass type, jint sampleRate, jint framesPerBurst) {
+Java_org_home_amp_Engine_native_1setDefaultStreamValues(JNIEnv *env, jclass type, jint sampleRate, jint framesPerBurst) {
   oboe::DefaultStreamValues::SampleRate = (int32_t) sampleRate;
   oboe::DefaultStreamValues::FramesPerBurst = (int32_t) framesPerBurst;
 }
